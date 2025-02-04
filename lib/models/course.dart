@@ -27,11 +27,9 @@ class Course with ChangeNotifier {
 
 //  UnmodifiableListView<Course> get packsList =>
 //      UnmodifiableListView(_listCourse.where((course) => course.type == "PACKS"));
-  
-
 
   Course({
-    this.name,
+    name,
   }) {
     addData(this.name);
   }
@@ -52,7 +50,7 @@ class Course with ChangeNotifier {
 
 class Contents {
   final String course;
-  final String title;
+  // final String title;
   final String speakerJA;
   final String speakerJB;
   final String speakerEA;
@@ -61,13 +59,13 @@ class Contents {
   final String soundNameB;
 
   const Contents({
-    @required this.course,
-    this.title,
-    @required this.speakerJA,
-    @required this.speakerJB,
-    @required this.speakerEA,
-    @required this.speakerEB,
-    @required this.soundNameA,
-    @required this.soundNameB,
+    required this.course,
+    // required this.title,
+    required this.speakerJA,
+    required this.speakerJB,
+    required this.speakerEA,
+    required this.speakerEB,
+    required this.soundNameA,
+    required this.soundNameB,
   });
 }

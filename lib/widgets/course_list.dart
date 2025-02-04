@@ -6,7 +6,7 @@ import 'course_card.dart';
 class CourseList extends StatelessWidget {
   final List<Course> list;
 
-  CourseList({@required this.list});
+  CourseList({required this.list});
 
   @override
   Widget build(BuildContext context) {

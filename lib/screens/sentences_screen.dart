@@ -9,10 +9,7 @@ import '../widgets/sentences_pageview.dart';
 
 class SentencesScreen extends StatefulWidget {
   static const routeName = '/sentences-screen';
-
-  SentencesScreen({
-    Key key,
-  }) : super(key: key);
+  SentencesScreen({super.key});
 
   @override
   _SentencesScreenState createState() => _SentencesScreenState();
@@ -24,7 +21,7 @@ class _SentencesScreenState extends State<SentencesScreen> {
   @override
   Widget build(BuildContext context) {
     final routeAugs =
-        ModalRoute.of(context).settings.arguments as Map<String, String>;
+        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     final courseTitle = routeAugs['title'];
     final courseId = routeAugs['id'];
     final sentences = SENTENCES.where((sentence) {
@@ -35,7 +32,7 @@ class _SentencesScreenState extends State<SentencesScreen> {
     //switch for languages
     return Scaffold(
         appBar: AppBar(
-          title: Text(courseTitle),
+          title: Text(courseTitle!),
           centerTitle: true,
           flexibleSpace: Container(
             decoration: BoxDecoration(

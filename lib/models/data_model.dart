@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
 class DataItem {
   final String id;
@@ -6,8 +6,8 @@ class DataItem {
   final String type;
 
   DataItem({
-    @required this.id,
-    @required this.title,
-    @required this.type,
+    required this.id,
+    required this.title,
+    required this.type,
   });
 }

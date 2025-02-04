@@ -1,10 +1,12 @@
-import 'package:app_review/app_review.dart';
+// import 'package:app_review/app_review.dart';
 import 'package:flutter/material.dart';
 import 'package:kaiwa/widgets/course_tab.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 import 'favorite_screen.dart';
 
 class CoursesScreen extends StatelessWidget {
+  final InAppReview inAppReview = InAppReview.instance;
   static final routeName = '/courses-screen';
   final List<Widget> containers = [
     Material(
@@ -24,10 +26,17 @@ class CoursesScreen extends StatelessWidget {
     ),
   ];
 
-  void _requestReview() {
-    AppReview.requestReview.then((onValue) {
-      print(onValue);
-    });
+  Future <void> _requestReview() async {
+    if (await inAppReview.isAvailable()) {
+    //   inAppReview.requestReview().then((onValue) {
+    //   print(onValue);
+    // });
+    inAppReview.openStoreListing(appStoreId: 'com.example.kaiwa');
+    }
+
+    // AppReview.requestReview.then((onValue) {
+    //   print(onValue);
+    // });
   }
 
   @override

@@ -5,7 +5,7 @@ import 'favorite_card.dart';
 class FavoriteListWidget extends StatelessWidget {
   final List<Course> list;
 
-  FavoriteListWidget({@required this.list});
+  FavoriteListWidget({required this.list});
 
   @override
   Widget build(BuildContext context) {

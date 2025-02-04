@@ -14,13 +14,13 @@ class CourseTab extends StatelessWidget {
     return Container(
       child: Consumer<Course>(
         builder: (context, course, child) => CourseList(
-          list: getCourse(type, course),
+          list: getCourse(type, course)!,
         ),
       ),
     );
   }
 
-  List<Course> getCourse(String type, Course course) {
+  List<Course>? getCourse(String type, Course course) {
     switch (type) {
       case "BEGINNER":
         return course.beginnerList;

@@ -11,7 +11,7 @@ class CourseCard extends StatefulWidget {
   final int index;
   final Course course;
 
-  CourseCard({@required this.index, this.course});
+  CourseCard({required this.index, required this.course});
 
   @override
   _CourseCardState createState() => _CourseCardState();

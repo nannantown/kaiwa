@@ -11,8 +11,8 @@ class SentencesPageView extends StatelessWidget {
   final AudioPlayer advancedPlayer = AudioPlayer();
 
   SentencesPageView({
-    @required this.index,
-    @required this.sentencesList,
+    required this.index,
+    required this.sentencesList,
   });
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,11 @@ class SentencesPageView extends StatelessWidget {
               width: double.infinity,
               child: InkWell(
                 onTap: () {
-                  final player = AudioCache(prefix: 'assets/sounds/');
-                  player.play(
-                      sentencesList[index].soundNameA.toString() + '.mp3');
+                  // final player = AudioCache(prefix: 'assets/sounds/');
+                  final player = AudioPlayer();
+
+                  player.play(AssetSource(
+                      sentencesList[index].soundNameA.toString() + '.mp3'));
                 },
                 child: Container(
                   child: Column(
@@ -83,8 +85,7 @@ class SentencesPageView extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 final player = AudioCache(prefix: 'assets/sounds/');
-                player
-                    .play(sentencesList[index].soundNameB.toString() + '.mp3');
+                // player.play(sentencesList[index].soundNameB.toString() + '.mp3');
               },
               child: Container(
                 child: Column(

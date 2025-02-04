@@ -9,7 +9,7 @@ class FavoriteCard extends StatelessWidget {
   final int index;
   final Course course;
 
-  FavoriteCard({@required this.index, @required this.course});
+  FavoriteCard({required this.index, required this.course});
 
   @override
   Widget build(BuildContext context) {
