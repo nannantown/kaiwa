@@ -60,6 +60,9 @@ class _SentencesScreenState extends State<SentencesScreen> {
                   return Text(
                     page.currentPage.toString() + "/10",
                     textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   );
                 }),
               ),
@@ -90,6 +93,8 @@ class _SentencesScreenState extends State<SentencesScreen> {
                   Consumer<TextVisibility>(builder: (context, change, _) {
                     return Expanded(
                       child: CupertinoSegmentedControl(
+                        borderColor: Colors.lightBlue,
+                        selectedColor: Colors.lightBlue,
                         children: {
                           "1": Padding(
                             padding: EdgeInsets.symmetric(vertical: 10),
@@ -105,7 +110,6 @@ class _SentencesScreenState extends State<SentencesScreen> {
                           ),
                         },
                         groupValue: number,
-                        selectedColor: Colors.lightBlue,
                         unselectedColor: Colors.white,
                         onValueChanged: (value) {
                           if (value == "1") {
