@@ -4,16 +4,37 @@ import 'package:provider/provider.dart';
 
 import '../provider/text_visibility.dart';
 
-class SentencesPageView extends StatelessWidget {
+class SentencesPageView extends StatefulWidget {
   final int index;
   final List sentencesList;
-  final AudioCache audioCache = AudioCache();
-  final AudioPlayer advancedPlayer = AudioPlayer();
 
   SentencesPageView({
     required this.index,
     required this.sentencesList,
   });
+
+  @override
+  _SentencesPageViewState createState() => _SentencesPageViewState();
+}
+
+class _SentencesPageViewState extends State<SentencesPageView> {
+  final AudioPlayer _audioPlayer = AudioPlayer();
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  Future<void> _playAudio() async {
+    try {
+      await _audioPlayer.play(AssetSource(
+          'sounds/${widget.sentencesList[widget.index].soundNameA}.mp3'));
+    } catch (e) {
+      print('Error playing audio: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,13 +45,7 @@ class SentencesPageView extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               child: InkWell(
-                onTap: () {
-                  // final player = AudioCache(prefix: 'assets/sounds/');
-                  final player = AudioPlayer();
-
-                  player.play(AssetSource(
-                      sentencesList[index].soundNameA.toString() + '.mp3'));
-                },
+                onTap: _playAudio,
                 child: Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +57,7 @@ class SentencesPageView extends StatelessWidget {
                         maintainState: true,
                         maintainSize: true,
                         child: Text(
-                          sentencesList[index].speakerJA,
+                          widget.sentencesList[widget.index].speakerJA,
                           style: TextStyle(
                             color: Colors.white,
                           ),
@@ -55,7 +70,7 @@ class SentencesPageView extends StatelessWidget {
                         maintainState: true,
                         maintainSize: true,
                         child: Text(
-                          sentencesList[index].speakerEA,
+                          widget.sentencesList[widget.index].speakerEA,
                           style: TextStyle(
                             color: Colors.white,
                           ),
@@ -97,7 +112,7 @@ class SentencesPageView extends StatelessWidget {
                       maintainState: true,
                       maintainSize: true,
                       child: Text(
-                        sentencesList[index].speakerJB,
+                        widget.sentencesList[widget.index].speakerJB,
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -109,7 +124,7 @@ class SentencesPageView extends StatelessWidget {
                       maintainState: true,
                       maintainSize: true,
                       child: Text(
-                        sentencesList[index].speakerEB,
+                        widget.sentencesList[widget.index].speakerEB,
                         style: TextStyle(
                           color: Colors.white,
                         ),
