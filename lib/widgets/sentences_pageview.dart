@@ -98,9 +98,13 @@ class _SentencesPageViewState extends State<SentencesPageView> {
           child: SizedBox(
             width: double.infinity,
             child: InkWell(
-              onTap: () {
-                final player = AudioCache(prefix: 'assets/sounds/');
-                // player.play(sentencesList[index].soundNameB.toString() + '.mp3');
+              onTap: () async {
+                try {
+                  await _audioPlayer.play(AssetSource(
+                      'sounds/${widget.sentencesList[widget.index].soundNameB}.mp3'));
+                } catch (e) {
+                  print('Error playing audio: $e');
+                }
               },
               child: Container(
                 child: Column(
