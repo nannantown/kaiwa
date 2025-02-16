@@ -17,6 +17,16 @@ class SentencesScreen extends StatefulWidget {
 
 class _SentencesScreenState extends State<SentencesScreen> {
   final PageController _pageController = PageController(initialPage: 0);
+  String selectedLanguage = '2';
+
+  @override
+  void initState() {
+    super.initState();
+    // 画面が作成された時点でTextVisibilityプロバイダーの状態を設定
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<TextVisibility>(context, listen: false).both();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +46,6 @@ class _SentencesScreenState extends State<SentencesScreen> {
       return sentence.course == courseId;
     }).toList();
 
-    String number = "2";
-    //switch for languages
     return Scaffold(
         appBar: AppBar(
           title: Text(courseTitle),
@@ -109,20 +117,20 @@ class _SentencesScreenState extends State<SentencesScreen> {
                             child: Text("EN"),
                           ),
                         },
-                        groupValue: number,
+                        groupValue: selectedLanguage,
                         unselectedColor: Colors.white,
                         onValueChanged: (value) {
                           if (value == "1") {
                             change.onlyJ();
-                            number = value;
+                            selectedLanguage = value;
                           }
                           if (value == "2") {
                             change.both();
-                            number = value;
+                            selectedLanguage = value;
                           }
                           if (value == "3") {
                             change.onlyE();
-                            number = value;
+                            selectedLanguage = value;
                           }
                         },
                       ),
