@@ -13,6 +13,10 @@ class FavoriteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (course.id == null || course.title == null) {
+      return Container();
+    }
+
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
@@ -36,8 +40,8 @@ class FavoriteCard extends StatelessWidget {
             Navigator.of(context).pushNamed(
               SentencesScreen.routeName,
               arguments: {
-                'id': course.id.toString(),
-                'title': course.title.toString(),
+                'id': course.id,
+                'title': course.title,
               },
             );
           },
@@ -49,31 +53,26 @@ class FavoriteCard extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          title: Container(
-            child: Text(
-              course.title,
-              style: TextStyle(
-                fontSize: 17.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+          title: Text(
+            course.title!,
+            style: TextStyle(
+              fontSize: 17.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
           ),
-          trailing: Material(
-            color: Colors.transparent,
-            child: Consumer<FavoriteList>(
-              builder: (context, favoriteList, _) => IconButton(
-                icon: Icon(favoriteList.isFavorite(course.id)
+          trailing: Consumer<FavoriteList>(
+            builder: (context, favoriteList, _) => IconButton(
+              icon: Icon(
+                favoriteList.isFavorite(course.id!)
                     ? Icons.favorite
-                    : Icons.favorite_border),
-                iconSize: 40,
-                autofocus: true,
-                highlightColor: Colors.pinkAccent,
-                hoverColor: Colors.pink,
-                onPressed: () {
-                  favoriteList.toggle(course.id);
-                },
+                    : Icons.favorite_border,
+                color: Colors.white,
               ),
+              iconSize: 40,
+              onPressed: () {
+                favoriteList.toggle(course.id!);
+              },
             ),
           ),
         ),

@@ -1,15 +1,15 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:kaiwa/models/data_model.dart';
 
 enum EventLoadingStatus { NotLoaded, Loading, Loaded }
 
 class Course with ChangeNotifier {
-  var id;
-  var title;
-  var type;
-  var color;
-  var name = [];
+  String? id;
+  String? title;
+  String? type;
+  String? color;
   final List<Course> _listCourse = [];
 
   UnmodifiableListView<Course> favoriteList(List<String> ids) =>
@@ -28,22 +28,22 @@ class Course with ChangeNotifier {
 //  UnmodifiableListView<Course> get packsList =>
 //      UnmodifiableListView(_listCourse.where((course) => course.type == "PACKS"));
 
-  Course({
-    name,
-  }) {
-    addData(this.name);
+  Course({List<DataItem>? name}) {
+    if (name != null) {
+      addData(name);
+    }
   }
 
-  addData(name) async {
-    if (name != null) {
-      for (final lists in name) {
-        Course course = Course();
-        course.id = lists.id;
-        course.title = lists.title;
-        course.type = lists.type;
-        _listCourse.add(course);
-      }
+  void addData(List<DataItem> items) {
+    for (final item in items) {
+      Course course = Course();
+      course.id = item.id;
+      course.title = item.title;
+      course.type = item.type;
+      _listCourse.add(course);
     }
+    print(
+        'Added ${items.length} courses. Total: ${_listCourse.length}'); // デバッグ用
     notifyListeners();
   }
 }

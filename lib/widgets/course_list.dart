@@ -10,6 +10,7 @@ class CourseList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('CourseList length: ${list.length}'); // デバッグ用
     return ListView(
       children: getChildrenCourse(),
     );

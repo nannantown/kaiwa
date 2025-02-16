@@ -21,6 +21,7 @@ class CourseTab extends StatelessWidget {
   }
 
   List<Course>? getCourse(String type, Course course) {
+    print('Getting courses for type: $type'); // デバッグ用
     switch (type) {
       case "BEGINNER":
         return course.beginnerList;

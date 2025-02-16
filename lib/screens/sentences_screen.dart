@@ -20,19 +20,27 @@ class _SentencesScreenState extends State<SentencesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final routeAugs =
-        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
-    final courseTitle = routeAugs['title'];
-    final courseId = routeAugs['id'];
+    final routeArgs =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final courseTitle = routeArgs['title'] as String?;
+    final courseId = routeArgs['id'] as String?;
+
+    if (courseTitle == null || courseId == null) {
+      return Scaffold(
+        appBar: AppBar(title: Text('Error')),
+        body: Center(child: Text('Invalid course data')),
+      );
+    }
+
     final sentences = SENTENCES.where((sentence) {
-      return sentence.course == (courseId);
+      return sentence.course == courseId;
     }).toList();
 
     String number = "2";
     //switch for languages
     return Scaffold(
         appBar: AppBar(
-          title: Text(courseTitle!),
+          title: Text(courseTitle),
           centerTitle: true,
           flexibleSpace: Container(
             decoration: BoxDecoration(
